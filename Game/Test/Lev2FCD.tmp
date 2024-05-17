@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://dki64ulbjyfn"]
+
+[ext_resource type="PackedScene" uid="uid://db6jnctp752al" path="res://Battle System/enemy_group.tscn" id="2_f4xcq"]
+[ext_resource type="PackedScene" uid="uid://b0plgo5tx6q46" path="res://Battle System/party.tscn" id="2_kb7ea"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Enemy Group" parent="." instance=ExtResource("2_f4xcq")]
+
+[node name="Party" parent="." instance=ExtResource("2_kb7ea")]
+position = Vector2(13, 22)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="choice" type="BoxContainer" parent="CanvasLayer"]
+offset_left = 287.0
+offset_top = 493.0
+offset_right = 695.0
+offset_bottom = 599.0
+
+[node name="Button" type="Button" parent="CanvasLayer/choice"]
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+text = "Attack"
+
+[node name="Button2" type="Button" parent="CanvasLayer/choice"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Items"
+
+[node name="Button3" type="Button" parent="CanvasLayer/choice"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Run"

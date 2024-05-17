@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0plgo5tx6q46"]
+
+[ext_resource type="PackedScene" uid="uid://db4iwhwcyd7s7" path="res://Player/Player.tscn" id="1_15gny"]
+[ext_resource type="Script" path="res://Battle System/party.gd" id="1_op5tl"]
+
+[node name="Party" type="Node2D"]
+script = ExtResource("1_op5tl")
+
+[node name="Player" parent="." instance=ExtResource("1_15gny")]
+position = Vector2(0, 0)
+
+[node name="Player2" parent="." instance=ExtResource("1_15gny")]
+position = Vector2(0, 0)
+
+[connection signal="attacking_after" from="Player" to="." method="_on_player_attacking_after"]
