@@ -28,7 +28,7 @@ func _process(_delta):
 				switch_focus(index, index-1)
 		if Input.is_action_just_pressed("enter"):
 			action_queue.push_back(index)
-			$".."/Party.players_target.push_back(enemies[index])
+			$".."/Party.players[$".."/Party.players_attacking].player_target.push_back(enemies[index])
 			emit_signal("next_player")
 		
 	if action_queue.size() == enemies.size() and not is_battling:
