@@ -912,7 +912,7 @@ position = Vector2(-16, 14)
 scale = Vector2(9, 9)
 sprite_frames = SubResource("SpriteFrames_bjvd1")
 animation = &"Idle_Left"
-frame = 10
+frame = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-20, 44.5)

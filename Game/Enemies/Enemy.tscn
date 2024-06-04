@@ -621,7 +621,7 @@ script = ExtResource("1_6g1r5")
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_omrom")
 animation = &"Idle_Left"
-frame = 1
+frame = 4
 
 [node name="Dead" type="Sprite2D" parent="."]
 visible = false

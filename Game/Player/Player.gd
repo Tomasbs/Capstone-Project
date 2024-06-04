@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var anim_tree = $AnimationTree
 @onready var anim_state = anim_tree.get("parameters/playback")
 
+@onready var players_target = $"..".players_target
+
 signal atack_over
 signal on_hit
 signal attacking_after
@@ -22,6 +24,8 @@ var at_home = true
 var at_target_x = false
 var at_target_y = false
 var at_target = false
+
+var next = false
 
 enum party_states {IDLE, WALK_ATTACK, WALK_BACK, ATTACK}
 var current_states = party_states.IDLE
@@ -53,16 +57,16 @@ func _process(delta):
 		if at_target_x == false:		
 			$".".position.x +=  250 * get_physics_process_delta_time()
 		if at_target_y == false:
-			if 	$".".position.y > $"..".players_target[$"..".players_attacking].position.y:
+			if 	$".".position.y > $"..".players_target[$"..".players_attacking-1].position.y:
 				$".".position.y -= 150 * get_physics_process_delta_time()
-			elif 	$".".position.y < $"..".players_target[$"..".players_attacking].position.y:
+			elif 	$".".position.y < $"..".players_target[$"..".players_attacking-1].position.y:
 				$".".position.y += 150 * get_physics_process_delta_time()
 		
 	if $"..".players_target.size() > 0:
 		if going_back == false:
-			if $".".position.x >= $"..".players_target[$"..".players_attacking].position.x - 150:
+			if $".".position.x >= $"..".players_target[$"..".players_attacking-1].position.x - 150:
 				at_target_x = true
-			if $".".position.y == $"..".players_target[$"..".players_attacking].position.y - 20:
+			if $".".position.y == $"..".players_target[$"..".players_attacking-1].position.y - 20:
 				at_target_y = true
 			if at_target_x == true and at_target_y == true:
 				at_target = true
@@ -77,16 +81,23 @@ func _process(delta):
 			elif 	$".".position.y < home_y:
 				$".".position.y += 150 * get_physics_process_delta_time()
 	
-	if $"..".players_target.size() == 0:
-		if attacking == false:
-			if $".".position.x == home_x:
-				at_home_x = true
-			if $".".position.y == home_y:
-				at_home_y = true
-			if at_home_x == true and at_home_y == true:
-				at_home = true
-				$"..".next = true
-				current_states = party_states.IDLE
+	if attacking == false:
+		if $".".position.x == home_x:
+			at_home_x = true
+		if $".".position.y == home_y:
+			at_home_y = true
+		if at_home_x == true and at_home_y == true:
+			at_home = true
+			current_states = party_states.IDLE
+			print("KABOOM")
+			if $"..".players_attacking == len($"..".players):
+				$"..".players_target.clear()
+				$"..".players_attacking = 1
+			else:
+				if not($"..".players_attacking == 0):
+					$"..".players_attacking += 1
+					emit_signal("attacking_after")
+				
 	
 
 '''func _process(delta):
@@ -155,12 +166,7 @@ func walk_back():
 	anim_tree.set("parameters/Walk/blend_position", Vector2(-1, 0))
 	anim_state.travel("Walk")
 	going_back = true
-	if $"..".players_attacking == len($"..".players) - 1:
-		$"..".players_target.clear()
-		$"..".players_attacking = 0
-	else:
-		$"..".players_attacking += 1
-		emit_signal("attacking_after")
+	
 	
 	
 

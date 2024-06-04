@@ -8,7 +8,6 @@ var index : int = 0
 signal next_player
 signal attacking
 @onready var choice = $"../CanvasLayer/Choice1"
-@onready var players_target = $".."/Party.players_target
 
 func _ready():
 	enemies = get_children()
@@ -29,7 +28,7 @@ func _process(_delta):
 				switch_focus(index, index-1)
 		if Input.is_action_just_pressed("enter"):
 			action_queue.push_back(index)
-			players_target.push_back(enemies[index])
+			$".."/Party.players_target.push_back(enemies[index])
 			emit_signal("next_player")
 		
 	if action_queue.size() == enemies.size() and not is_battling:
