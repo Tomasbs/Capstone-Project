@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ojvvsbbtykb4"]
+
+[ext_resource type="PackedScene" uid="uid://bi7xhkqjobvj5" path="res://Enemies/pumpkin_boss.tscn" id="1_0w2nm"]
+[ext_resource type="Script" path="res://Enemy Groups/enemy_group.gd" id="1_3vcx3"]
+
+[node name="Enemy Group" type="Node2D"]
+script = ExtResource("1_3vcx3")
+
+[node name="Pumpkin" parent="." instance=ExtResource("1_0w2nm")]
