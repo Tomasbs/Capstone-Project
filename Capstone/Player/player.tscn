@@ -732,6 +732,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Light_Attack"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_on_on_hit"
+}, {
+"args": [],
+"method": &"_on_atack_over"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_vr17q"]
 length = 0.75
@@ -1078,7 +1095,7 @@ states/Magic_Attack/position = Vector2(387, 195)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_pj1vh")
 states/Walk/position = Vector2(317, 25)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_58fqc"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_gghff"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_2mota"), "Walk", "Heavy_Attack", SubResource("AnimationNodeStateMachineTransition_5gx0e"), "Heavy_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jcwke"), "Walk", "Light_Attack", SubResource("AnimationNodeStateMachineTransition_pxkts"), "Light_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_fru7v"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_75gwb"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_icxif"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_f3t1x"), "Idle", "Bow_Attack", SubResource("AnimationNodeStateMachineTransition_cu842"), "Bow_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_cbtm2"), "Magic_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wsxn8"), "Idle", "Magic_Attack", SubResource("AnimationNodeStateMachineTransition_oroij")]
-graph_offset = Vector2(-196, -74)
+graph_offset = Vector2(-337.931, -93.9149)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(5, 5)
@@ -1087,7 +1104,7 @@ script = ExtResource("1_l3e6m")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p6416")
 animation = &"Idle"
-frame = 10
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.25)

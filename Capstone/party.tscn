@@ -7,3 +7,5 @@
 script = ExtResource("1_jsqdl")
 
 [node name="Player" parent="." instance=ExtResource("1_51www")]
+
+[connection signal="enemy_attacking" from="Player" to="." method="_on_player_enemy_attacking"]

@@ -304,7 +304,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Hurt",
-"speed": 6.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -455,7 +455,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fdc28"]
-size = Vector2(56.6667, 79)
+size = Vector2(56.6667, 70.8333)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_567kd"]
 bg_color = Color(1, 0.168627, 0.0941176, 1)
@@ -516,9 +516,22 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Hurt"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_states_reset"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_jdebg"]
-length = 0.666667
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -527,10 +540,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [0, 1, 2, 3, 4, 5]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -876,30 +889,32 @@ states/Start/position = Vector2(-10, 92)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_msxku")
 states/Walk/position = Vector2(288, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ak7n5"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kunw2"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_v581r"), "Walk", "Physical_Attack", SubResource("AnimationNodeStateMachineTransition_g6j61"), "Physical_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_s5y08"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_hm08w"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_pdypd"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_yu6jk"), "Walk", "Seed_Attack", SubResource("AnimationNodeStateMachineTransition_7og5u"), "Seed_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_far0i")]
-graph_offset = Vector2(-262, -33)
+graph_offset = Vector2(-272.843, -18.8461)
 
 [node name="Pumpkin" type="CharacterBody2D"]
 scale = Vector2(6, 6)
 script = ExtResource("1_15mq8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -29.1667)
 sprite_frames = SubResource("SpriteFrames_j42bk")
 animation = &"Idle"
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.833335, 13.6667)
+position = Vector2(-1.5, -14.25)
 shape = SubResource("RectangleShape2D_fdc28")
 
 [node name="Focus" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-0.333333, -18)
+position = Vector2(-0.333333, -44.1667)
 texture = ExtResource("3_c5jwc")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -29.6667
-offset_top = -3.0
+offset_top = -31.3333
 offset_right = 28.3333
-offset_bottom = 5.0
+offset_bottom = -23.3333
 theme_override_styles/background = SubResource("StyleBoxFlat_567kd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_idjue")
 value = 100.0
