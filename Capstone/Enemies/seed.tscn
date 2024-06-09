@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://brhvqtfuhyq1t"]
+
+[ext_resource type="Texture2D" uid="uid://ctj5bnwp4e7wl" path="res://Sprites/Seed Sprite Sheet.png" id="1_4y478"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ett4q"]
+size = Vector2(8, 6)
+
+[node name="Seed" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4y478")
+region_enabled = true
+region_rect = Rect2(3.48733, 5.29737, 9.18888, 6.216)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ett4q")

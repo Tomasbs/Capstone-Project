@@ -1,9 +1,10 @@
-[gd_scene load_steps=119 format=3 uid="uid://bi7xhkqjobvj5"]
+[gd_scene load_steps=122 format=3 uid="uid://bi7xhkqjobvj5"]
 
 [ext_resource type="Script" path="res://Enemies/pumpkin_boss.gd" id="1_15mq8"]
 [ext_resource type="Texture2D" uid="uid://qynf8jurelxu" path="res://Sprites/Giant Pumpkin Sprite Sheet.png" id="1_umvgs"]
 [ext_resource type="Texture2D" uid="uid://7qs8pfpm4a1h" path="res://Sprites/Right Giant Pumpkin Sprite Sheet.png" id="2_ypsc4"]
 [ext_resource type="Texture2D" uid="uid://d3s558m71ysqa" path="res://Sprites/down-arrow-sticker(33x33).png" id="3_c5jwc"]
+[ext_resource type="PackedScene" uid="uid://brhvqtfuhyq1t" path="res://Enemies/seed.tscn" id="5_ovux2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3rhqd"]
 atlas = ExtResource("1_umvgs")
@@ -611,6 +612,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Physical_Attack"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.3, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_on_attack_hit"
+}, {
+"args": [],
+"method": &"_on_attack_over"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rd37h"]
 length = 0.833333
@@ -637,6 +655,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Seed_Attack"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_on_seed_created"
+}, {
+"args": [],
+"method": &"on_states_reset"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_mvp1u"]
@@ -867,11 +902,16 @@ switch_mode = 2
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yu6jk"]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7og5u"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_far0i"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8we1i"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_prerg"]
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yrgb1"]
@@ -888,8 +928,8 @@ states/Seed_Attack/position = Vector2(288, 17)
 states/Start/position = Vector2(-10, 92)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_msxku")
 states/Walk/position = Vector2(288, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ak7n5"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kunw2"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_v581r"), "Walk", "Physical_Attack", SubResource("AnimationNodeStateMachineTransition_g6j61"), "Physical_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_s5y08"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_hm08w"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_pdypd"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_yu6jk"), "Walk", "Seed_Attack", SubResource("AnimationNodeStateMachineTransition_7og5u"), "Seed_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_far0i")]
-graph_offset = Vector2(-272.843, -18.8461)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ak7n5"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_kunw2"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_v581r"), "Walk", "Physical_Attack", SubResource("AnimationNodeStateMachineTransition_g6j61"), "Physical_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_s5y08"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_hm08w"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_pdypd"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_yu6jk"), "Walk", "Seed_Attack", SubResource("AnimationNodeStateMachineTransition_7og5u"), "Seed_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_far0i"), "Hurt", "Walk", SubResource("AnimationNodeStateMachineTransition_8we1i"), "Hurt", "Seed_Attack", SubResource("AnimationNodeStateMachineTransition_prerg")]
+graph_offset = Vector2(-323.843, -80.985)
 
 [node name="Pumpkin" type="CharacterBody2D"]
 scale = Vector2(6, 6)
@@ -936,4 +976,16 @@ parameters/Hurt/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Physical_Attack/blend_position = Vector2(0, 0)
 parameters/Seed_Attack/blend_position = Vector2(0, 0)
-parameters/Walk/blend_position = Vector2(0, -0.00440526)
+parameters/Walk/blend_position = Vector2(-0.00160003, 0.00529099)
+
+[node name="SeedStartPosition" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SeedStartPosition"]
+position = Vector2(-16.6667, 7.5)
+
+[node name="Seed" parent="." instance=ExtResource("5_ovux2")]
+position = Vector2(-0.166667, 0.5)
+
+[connection signal="attack_hit" from="." to="." method="_on_attack_hit"]
+[connection signal="attack_over" from="." to="." method="_on_attack_over"]
+[connection signal="seed_created" from="." to="." method="_on_seed_created"]

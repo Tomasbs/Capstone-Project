@@ -1,8 +1,9 @@
-[gd_scene load_steps=148 format=3 uid="uid://b3cdeafs562yx"]
+[gd_scene load_steps=149 format=3 uid="uid://b3cdeafs562yx"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_l3e6m"]
 [ext_resource type="Texture2D" uid="uid://mpuincnma3ry" path="res://Sprites/Adventurer Sprite Sheet v1.5.png" id="1_pwwbs"]
 [ext_resource type="Texture2D" uid="uid://djs1v6i0sbmj8" path="res://Sprites/Adventurer Left Sprite Sheet v1.5.png" id="2_d8bea"]
+[ext_resource type="PackedScene" uid="uid://n3d8bjt1axa" path="res://arrow.tscn" id="4_4vue0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e5uvt"]
 atlas = ExtResource("1_pwwbs")
@@ -596,6 +597,20 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Bow_Attack"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_arrow_created"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_sx2cr"]
 length = 0.875
@@ -649,6 +664,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Heavy_Attack"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_on_on_hit"
+}, {
+"args": [],
+"method": &"_on_atack_over"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_bif6l"]
@@ -739,7 +771,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 1.2),
+"times": PackedFloat32Array(0.2, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -883,7 +915,7 @@ animation = &"Death"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_j1ujk"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_jara1")
-blend_point_0/pos = Vector2(-1, 0.1)
+blend_point_0/pos = Vector2(-1, 0)
 blend_point_1/node = SubResource("AnimationNodeAnimation_xplmu")
 blend_point_1/pos = Vector2(0, 1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_6nw6w")
@@ -1064,9 +1096,6 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_icxif"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f3t1x"]
-switch_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cu842"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cbtm2"]
@@ -1077,11 +1106,13 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oroij"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4tw2i"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xkx2k"]
 states/Bow_Attack/node = SubResource("AnimationNodeBlendSpace2D_hlpqj")
 states/Bow_Attack/position = Vector2(217, 166)
 states/Death/node = SubResource("AnimationNodeBlendSpace2D_j1ujk")
-states/Death/position = Vector2(571, 98)
+states/Death/position = Vector2(524, 25)
 states/Heavy_Attack/node = SubResource("AnimationNodeBlendSpace2D_suftl")
 states/Heavy_Attack/position = Vector2(428, -47)
 states/Hurt/node = SubResource("AnimationNodeBlendSpace2D_1hrg3")
@@ -1094,8 +1125,8 @@ states/Magic_Attack/node = SubResource("AnimationNodeBlendSpace2D_dmoqq")
 states/Magic_Attack/position = Vector2(387, 195)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_pj1vh")
 states/Walk/position = Vector2(317, 25)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_58fqc"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_gghff"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_2mota"), "Walk", "Heavy_Attack", SubResource("AnimationNodeStateMachineTransition_5gx0e"), "Heavy_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jcwke"), "Walk", "Light_Attack", SubResource("AnimationNodeStateMachineTransition_pxkts"), "Light_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_fru7v"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_75gwb"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_icxif"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_f3t1x"), "Idle", "Bow_Attack", SubResource("AnimationNodeStateMachineTransition_cu842"), "Bow_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_cbtm2"), "Magic_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wsxn8"), "Idle", "Magic_Attack", SubResource("AnimationNodeStateMachineTransition_oroij")]
-graph_offset = Vector2(-337.931, -93.9149)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_58fqc"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_gghff"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_2mota"), "Walk", "Heavy_Attack", SubResource("AnimationNodeStateMachineTransition_5gx0e"), "Heavy_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jcwke"), "Walk", "Light_Attack", SubResource("AnimationNodeStateMachineTransition_pxkts"), "Light_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_fru7v"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_75gwb"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_icxif"), "Idle", "Bow_Attack", SubResource("AnimationNodeStateMachineTransition_cu842"), "Bow_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_cbtm2"), "Magic_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wsxn8"), "Idle", "Magic_Attack", SubResource("AnimationNodeStateMachineTransition_oroij"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_4tw2i")]
+graph_offset = Vector2(-63.931, -90.9149)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(5, 5)
@@ -1104,7 +1135,7 @@ script = ExtResource("1_l3e6m")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p6416")
 animation = &"Idle"
-frame = 1
+frame = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.25)
@@ -1134,10 +1165,19 @@ tree_root = SubResource("AnimationNodeStateMachine_xkx2k")
 advance_expression_base_node = NodePath("../AnimationPlayer")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Bow_Attack/blend_position = Vector2(0, 0)
-parameters/Death/blend_position = Vector2(0, 0)
+parameters/Death/blend_position = Vector2(0.00320005, -0.00529099)
 parameters/Heavy_Attack/blend_position = Vector2(0, 0)
 parameters/Hurt/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(-0.00160003, 0.00529099)
 parameters/Light_Attack/blend_position = Vector2(0, 0)
 parameters/Magic_Attack/blend_position = Vector2(0, 0)
 parameters/Walk/blend_position = Vector2(0.2128, -0.506608)
+
+[node name="Arrow" parent="." instance=ExtResource("4_4vue0")]
+
+[node name="ArrowStartPosition" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ArrowStartPosition"]
+position = Vector2(7, 7.2)
+
+[connection signal="arrow_created" from="." to="." method="_on_arrow_created"]

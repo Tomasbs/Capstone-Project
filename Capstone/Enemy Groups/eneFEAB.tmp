@@ -8,6 +8,4 @@ script = ExtResource("1_3vcx3")
 
 [node name="Pumpkin" parent="." instance=ExtResource("1_0w2nm")]
 
-[connection signal="attack_hit" from="Pumpkin" to="." method="_on_pumpkin_attack_hit"]
-[connection signal="attack_hit_connection" from="Pumpkin" to="." method="_on_pumpkin_attack_hit_connection"]
-[connection signal="seed_moving" from="Pumpkin" to="." method="_on_pumpkin_seed_moving"]
+[connection signal="seed_movement" from="Pumpkin" to="." method="_on_pumpkin_seed_movement"]
