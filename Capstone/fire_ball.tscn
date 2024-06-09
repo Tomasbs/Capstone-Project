@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d06oet24ajfcj"]
+
+[ext_resource type="Texture2D" uid="uid://difc6r2ea2xb1" path="res://Sprites/Royal Mage Sprite Sheet.png" id="1_oe4yh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oskur"]
+
+[node name="Fire_Ball" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_oe4yh")
+region_enabled = true
+region_rect = Rect2(5.37589, 198.098, 21.4858, 20.4158)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oskur")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=149 format=3 uid="uid://b3cdeafs562yx"]
+[gd_scene load_steps=162 format=3 uid="uid://b3cdeafs562yx"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_l3e6m"]
 [ext_resource type="Texture2D" uid="uid://mpuincnma3ry" path="res://Sprites/Adventurer Sprite Sheet v1.5.png" id="1_pwwbs"]
 [ext_resource type="Texture2D" uid="uid://djs1v6i0sbmj8" path="res://Sprites/Adventurer Left Sprite Sheet v1.5.png" id="2_d8bea"]
 [ext_resource type="PackedScene" uid="uid://n3d8bjt1axa" path="res://arrow.tscn" id="4_4vue0"]
+[ext_resource type="PackedScene" uid="uid://d06oet24ajfcj" path="res://fire_ball.tscn" id="5_ygd0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e5uvt"]
 atlas = ExtResource("1_pwwbs")
@@ -228,6 +229,22 @@ region = Rect2(128, 320, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2n21j"]
 atlas = ExtResource("1_pwwbs")
 region = Rect2(160, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdl6i"]
+atlas = ExtResource("1_pwwbs")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b3ja"]
+atlas = ExtResource("1_pwwbs")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsq4s"]
+atlas = ExtResource("1_pwwbs")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jvlk"]
+atlas = ExtResource("1_pwwbs")
+region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yq0el"]
 atlas = ExtResource("2_d8bea")
@@ -503,6 +520,23 @@ animations = [{
 "loop": false,
 "name": &"Magic_Attack",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdl6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b3ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsq4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jvlk")
+}],
+"loop": false,
+"name": &"Miss",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -808,6 +842,47 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Magic_Attack"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_magic_created"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_q8eah"]
+length = 0.666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Miss"]
+}
 
 [sub_resource type="Animation" id="Animation_e54uw"]
 length = 1.14286
@@ -874,6 +949,7 @@ _data = {
 "Idle": SubResource("Animation_uoob6"),
 "Light_Attack": SubResource("Animation_i7llf"),
 "Magic_Attack": SubResource("Animation_vr17q"),
+"Miss": SubResource("Animation_q8eah"),
 "Walk_Left": SubResource("Animation_e54uw"),
 "Walk_Right": SubResource("Animation_1bcep")
 }
@@ -1041,6 +1117,28 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_ibw1a")
 blend_point_3/pos = Vector2(0, -0.9)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qolm5"]
+animation = &"Miss"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ka8yr"]
+animation = &"Miss"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eq27x"]
+animation = &"Miss"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c3mvo"]
+animation = &"Miss"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7ki2b"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_qolm5")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_ka8yr")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_eq27x")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_c3mvo")
+blend_point_3/pos = Vector2(0, -1)
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2muku"]
 animation = &"Walk_Left"
 
@@ -1108,6 +1206,11 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4tw2i"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_swo5y"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_echp7"]
+switch_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xkx2k"]
 states/Bow_Attack/node = SubResource("AnimationNodeBlendSpace2D_hlpqj")
 states/Bow_Attack/position = Vector2(217, 166)
@@ -1123,10 +1226,12 @@ states/Light_Attack/node = SubResource("AnimationNodeBlendSpace2D_uve54")
 states/Light_Attack/position = Vector2(176, -47)
 states/Magic_Attack/node = SubResource("AnimationNodeBlendSpace2D_dmoqq")
 states/Magic_Attack/position = Vector2(387, 195)
+states/Miss/node = SubResource("AnimationNodeBlendSpace2D_7ki2b")
+states/Miss/position = Vector2(76.069, 0.0850983)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_pj1vh")
 states/Walk/position = Vector2(317, 25)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_58fqc"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_gghff"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_2mota"), "Walk", "Heavy_Attack", SubResource("AnimationNodeStateMachineTransition_5gx0e"), "Heavy_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jcwke"), "Walk", "Light_Attack", SubResource("AnimationNodeStateMachineTransition_pxkts"), "Light_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_fru7v"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_75gwb"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_icxif"), "Idle", "Bow_Attack", SubResource("AnimationNodeStateMachineTransition_cu842"), "Bow_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_cbtm2"), "Magic_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wsxn8"), "Idle", "Magic_Attack", SubResource("AnimationNodeStateMachineTransition_oroij"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_4tw2i")]
-graph_offset = Vector2(-63.931, -90.9149)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_58fqc"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_gghff"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_2mota"), "Walk", "Heavy_Attack", SubResource("AnimationNodeStateMachineTransition_5gx0e"), "Heavy_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_jcwke"), "Walk", "Light_Attack", SubResource("AnimationNodeStateMachineTransition_pxkts"), "Light_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_fru7v"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_75gwb"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_icxif"), "Idle", "Bow_Attack", SubResource("AnimationNodeStateMachineTransition_cu842"), "Bow_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_cbtm2"), "Magic_Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wsxn8"), "Idle", "Magic_Attack", SubResource("AnimationNodeStateMachineTransition_oroij"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_4tw2i"), "Idle", "Miss", SubResource("AnimationNodeStateMachineTransition_swo5y"), "Miss", "Idle", SubResource("AnimationNodeStateMachineTransition_echp7")]
+graph_offset = Vector2(-120.931, -36.9149)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(5, 5)
@@ -1135,7 +1240,7 @@ script = ExtResource("1_l3e6m")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p6416")
 animation = &"Idle"
-frame = 8
+frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.25)
@@ -1171,13 +1276,18 @@ parameters/Hurt/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(-0.00160003, 0.00529099)
 parameters/Light_Attack/blend_position = Vector2(0, 0)
 parameters/Magic_Attack/blend_position = Vector2(0, 0)
+parameters/Miss/blend_position = Vector2(0.00160003, 0.00529099)
 parameters/Walk/blend_position = Vector2(0.2128, -0.506608)
 
 [node name="Arrow" parent="." instance=ExtResource("4_4vue0")]
 
-[node name="ArrowStartPosition" type="Node2D" parent="."]
+[node name="Fire_Ball" parent="." instance=ExtResource("5_ygd0r")]
+scale = Vector2(1, 1)
 
-[node name="Marker2D" type="Marker2D" parent="ArrowStartPosition"]
+[node name="ProjectileStartPosition" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ProjectileStartPosition"]
 position = Vector2(7, 7.2)
 
 [connection signal="arrow_created" from="." to="." method="_on_arrow_created"]
+[connection signal="magic_created" from="." to="." method="_on_magic_created"]

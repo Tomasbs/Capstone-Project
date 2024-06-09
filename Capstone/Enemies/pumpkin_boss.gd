@@ -37,9 +37,9 @@ var attacking = false
 var attack_type : int = -1
 var hp = 0
 
-@export var MAX_HEALTH: float = 7
+@export var MAX_HEALTH: float = 10
 
-var enemy_health: float = 7:
+var enemy_health: float = 10:
 	set(value):
 		enemy_health = value
 		_update_progress_bar()
@@ -73,7 +73,6 @@ func _process(delta):
 		attack_type = randi() % 2
 		randomizer = false
 	if attack_type == 0:
-		print("HHH")
 		current_states = enemies_states.WALK_ATTACK	
 	if attack_type == 1:	
 		current_states = enemies_states.SEED_ATTACK	

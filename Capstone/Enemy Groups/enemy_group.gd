@@ -9,6 +9,8 @@ var enemies_attacking = 0
 var overall_hp = 7
 var seed_movement = false
 
+var attack_percentage = 0
+
 signal next_player
 signal attacking
 signal enemies_defeated
@@ -105,23 +107,27 @@ func _on_pumpkin_seed_moving():
 
 func _on_light_attack_pressed():
 	$"../CanvasLayer/Choice2".visible = false
+	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 0
 	_start_choosing()
 
 func _on_magic_attack_pressed():
 	$"../CanvasLayer/Choice2".visible = false
+	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 3
 	_start_choosing()
 
 
 func _on_bow_attack_pressed():
 	$"../CanvasLayer/Choice2".visible = false
+	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 2
 	_start_choosing()
 
 
 func _on_heavy_attack_pressed():
 	$"../CanvasLayer/Choice2".visible = false
+	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 1
 	_start_choosing()
 

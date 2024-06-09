@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var player_target : Array = []
 @onready var attack_type : Array = []
 
-@export var MAX_HEALTH: float = 7
+@export var MAX_HEALTH: float = 10
 
 var player_round = 0
 
@@ -21,6 +21,8 @@ signal on_hit
 signal enemy_attacking
 signal arrow_created
 signal arrow_moving
+signal magic_created
+signal magic_moving
 
 var attacking = false
 var going_back = false
@@ -34,10 +36,10 @@ var at_target_x = false
 var at_target_y = false
 var at_target = false
 
-enum party_states {IDLE, WALK_ATTACK, WALK_BACK, LIGHT_ATTACK, HEAVY_ATTACK, BOW_ATTACK, HURT, DEAD}
+enum party_states {IDLE, WALK_ATTACK, WALK_BACK, LIGHT_ATTACK, HEAVY_ATTACK, BOW_ATTACK, MAGIC_ATTACK, HURT, DEAD, MISS}
 var current_states = party_states.IDLE
 
-var player_health: float = 7:
+var player_health: float = 10:
 	set(value):
 		player_health = value
 		_update_progress_bar()
@@ -45,6 +47,8 @@ var player_health: float = 7:
 func _ready():
 	$Arrow.position.x = position.x
 	$Arrow.position.y = 10000
+	$Fire_Ball.position.x = position.x
+	$Fire_Ball.position.y = 10000
 		
 func _process(delta):
 	match current_states:
@@ -65,11 +69,15 @@ func _process(delta):
 			player_round += 1
 			heavy_attack()	
 		party_states.HURT:
-			take_damage(2)
+			take_damage((randi() % 2)+1)
 		party_states.DEAD:
 			death()
 		party_states.BOW_ATTACK:
 			bow_attack()
+		party_states.MAGIC_ATTACK:
+			magic_attack()
+		party_states.MISS:
+			miss()
 	
 	if attacking == true and at_target == false:
 		if at_target_x == false:		
@@ -145,7 +153,10 @@ func _on_atack_over():
 	current_states = party_states.WALK_BACK
 	
 func _on_on_hit():
-	player_target[0].take_damage(1)
+	if $"..".attack_type == 0:
+		player_target[0].take_damage((randi() % 1)+1)
+	if $"..".attack_type == 1:
+		player_target[0].take_damage((randi() % 3)+2)
 	
 func walk_back():
 	at_target = false
@@ -171,8 +182,23 @@ func death():
 func bow_attack():
 	anim_tree.set("parameters/Bow_Attack/blend_position", Vector2(0, 0))
 	anim_state.travel("Bow_Attack")
+	
+func magic_attack():
+	anim_tree.set("parameters/Magic_Attack/blend_position", Vector2(0, 0))
+	anim_state.travel("Magic_Attack")
 
 
 func _on_arrow_created():
-	$Arrow.position = $ArrowStartPosition/Marker2D.position
+	$Arrow.position = $ProjectileStartPosition/Marker2D.position
 	emit_signal("arrow_moving")
+
+
+func _on_magic_created():
+	$Fire_Ball.position = $ProjectileStartPosition/Marker2D.position
+	emit_signal("magic_moving")
+
+func miss():
+	anim_tree.set("parameters/Miss/blend_position", Vector2(0, 0))
+	anim_state.travel("Miss")
+	await get_tree().create_timer(1).timeout
+	emit_signal("enemy_attacking")
