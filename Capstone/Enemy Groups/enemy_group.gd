@@ -111,31 +111,29 @@ func _on_pumpkin_seed_moving():
 
 
 func _on_light_attack_pressed():
-	print("GH")
-	$"../CanvasLayer/Choice2".visible = false
+	choice2_hide()
 	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 0
 	_start_choosing()
 
 func _on_magic_attack_pressed():
-	print("GH")
-	$"../CanvasLayer/Choice2".visible = false
+	#choice_2.hide()
+	#$"../CanvasLayer/Choice2".visible = false
+	choice2_hide()
 	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 3
 	_start_choosing()
 
 
 func _on_bow_attack_pressed():
-	print("GH")
-	$"../CanvasLayer/Choice2".visible = false
+	choice2_hide()
 	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 2
 	_start_choosing()
 
 
 func _on_heavy_attack_pressed():
-	print("HH")
-	$"../CanvasLayer/Choice2".visible = false
+	choice2_hide()
 	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 1
 	_start_choosing()
@@ -143,3 +141,7 @@ func _on_heavy_attack_pressed():
 func _on_party_enemy_arrow_attacking():
 	$".".enemies[enemies_attacking].attacking = true
 	$".".enemies[enemies_attacking].randomizer = true
+	
+func choice2_hide():
+	print("GH")
+	$"../CanvasLayer/Choice2".visible = false
