@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ghgqa4w6s83e"]
+
+[ext_resource type="Script" path="res://victory_screen.gd" id="1_6r5cf"]
+[ext_resource type="Texture2D" uid="uid://djprv4e5pl2kc" path="res://Sprites/intro.png" id="1_aow41"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vgk06"]
+
+[node name="Victory_Screen" type="Node2D"]
+script = ExtResource("1_6r5cf")
+
+[node name="Intro" type="Sprite2D" parent="."]
+position = Vector2(578, 326.5)
+scale = Vector2(1.20625, 1.01406)
+texture = ExtResource("1_aow41")
+metadata/_edit_lock_ = true
+
+[node name="Box" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(550, 273.252)
+scale = Vector2(648, 332.504)
+texture = SubResource("CanvasTexture_vgk06")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 239.0
+offset_top = 115.0
+offset_right = 853.0
+offset_bottom = 422.0
+theme_override_font_sizes/font_size = 27
+text = "Congrats! You have survived the Pumpkin, 
+hopefully one day this will be a normal
+boss in a much bigger game
+
+Thank you for playing!"

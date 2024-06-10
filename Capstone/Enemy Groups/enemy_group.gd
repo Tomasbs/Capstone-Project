@@ -79,7 +79,6 @@ func switch_focus(x, y):
 	enemies[y].unfocus()
 		
 func show_choice():
-	print("G")
 	choice.show()
 	choice.find_child("Attack").grab_focus()
 	
@@ -143,5 +142,7 @@ func _on_party_enemy_arrow_attacking():
 	$".".enemies[enemies_attacking].randomizer = true
 	
 func choice2_hide():
-	print("GH")
-	$"../CanvasLayer/Choice2".visible = false
+	choice_2.visible = false
+	#$"../CanvasLayer/Choice2".visible = false
+	
+

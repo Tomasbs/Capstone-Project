@@ -27,7 +27,7 @@ var at_home = true
 var dead = false
 
 var home_x = 900	
-var home_y = 355
+var home_y = 345
 
 var at_target_x = false
 var at_target_y = false
@@ -187,3 +187,6 @@ func _on_attack_over():
 func death():
 	anim_tree.set("parameters/Death/blend_position", Vector2(-1, 0))
 	anim_state.travel("Death")
+	
+func victory_screen():
+	get_tree().change_scene_to_file("res://victory_screen.tscn")

@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4mnixvm2jkqi"]
+
+[ext_resource type="Texture2D" uid="uid://djprv4e5pl2kc" path="res://Sprites/intro.png" id="1_ey1ll"]
+[ext_resource type="Script" path="res://menu.gd" id="1_o7b64"]
+[ext_resource type="Texture2D" uid="uid://don7qxqdypl5r" path="res://Sprites/text-1718060006878.png" id="2_430kk"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cxuoe"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lw6ks"]
+specular_color = Color(0, 0, 0, 1)
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_o7b64")
+
+[node name="Intro" type="Sprite2D" parent="."]
+position = Vector2(577, 327)
+scale = Vector2(1.2, 1.01875)
+texture = ExtResource("1_ey1ll")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(553, 160)
+scale = Vector2(796, 66)
+texture = SubResource("CanvasTexture_cxuoe")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(551, 164)
+texture = ExtResource("2_430kk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Choice" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 372.0
+offset_top = 279.0
+offset_right = 667.0
+offset_bottom = 607.0
+
+[node name="Play" type="Button" parent="CanvasLayer/Choice"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play"
+
+[node name="Credits" type="Button" parent="CanvasLayer/Choice"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Credits"
+
+[node name="Exit" type="Button" parent="CanvasLayer/Choice"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit"
+
+[node name="Credits" type="Node2D" parent="."]
+visible = false
+position = Vector2(275, 119)
+
+[node name="Box" type="Sprite2D" parent="Credits"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(261.75, 238.75)
+scale = Vector2(524.5, 478.5)
+texture = SubResource("CanvasTexture_lw6ks")
+
+[node name="TextEdit" type="TextEdit" parent="Credits"]
+offset_left = 12.0
+offset_top = 18.0
+offset_right = 510.0
+offset_bottom = 463.0
+theme_override_font_sizes/font_size = 30
+text = "Created by Tomás Souto
+Art created by Elthen on Patreon
+
+
+
+
+
+
+Press Enter to return to the Menu"
+
+[connection signal="pressed" from="CanvasLayer/Choice/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Choice/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CanvasLayer/Choice/Exit" to="." method="_on_exit_pressed"]
