@@ -1240,7 +1240,7 @@ script = ExtResource("1_l3e6m")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p6416")
 animation = &"Idle"
-frame = 6
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.25)
@@ -1282,7 +1282,6 @@ parameters/Walk/blend_position = Vector2(0.2128, -0.506608)
 [node name="Arrow" parent="." instance=ExtResource("4_4vue0")]
 
 [node name="Fire_Ball" parent="." instance=ExtResource("5_ygd0r")]
-scale = Vector2(1, 1)
 
 [node name="ProjectileStartPosition" type="Node2D" parent="."]
 

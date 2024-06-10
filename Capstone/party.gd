@@ -44,14 +44,19 @@ func _process(delta):
 func _on_enemy_group_attacking():
 	if attack_type == 0 and $".."/Enemy_Group.attack_percentage < 8:
 		$".".players[0].current_states = $".".players[0].party_states.WALK_ATTACK
+		$".."/Enemy_Group.picking = true
 	elif attack_type == 1 and $".."/Enemy_Group.attack_percentage < 6:
 		$".".players[0].current_states = $".".players[0].party_states.WALK_ATTACK
+		$".."/Enemy_Group.picking = true
 	elif attack_type == 2 and $".."/Enemy_Group.attack_percentage < 7:
 		$".".players[0].current_states = $".".players[0].party_states.BOW_ATTACK
+		$".."/Enemy_Group.picking = true
 	elif attack_type == 3 and $".."/Enemy_Group.attack_percentage < 5:
 		$".".players[0].current_states = $".".players[0].party_states.MAGIC_ATTACK
+		$".."/Enemy_Group.picking = true
 	else:
 		$".".players[0].current_states = $".".players[0].party_states.MISS
+		$".."/Enemy_Group.picking = true
 
 func _on_player_enemy_attacking():
 	emit_signal("enemy_attacking2")

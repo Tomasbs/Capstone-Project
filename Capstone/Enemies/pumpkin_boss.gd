@@ -173,7 +173,9 @@ func walk_back():
 	anim_tree.set("parameters/Walk/blend_position", Vector2(1, 0))
 	anim_state.travel("Walk")
 	enemy_going_back = true
-	$"..".show_choice()
+	if $"..".picking == true:
+		$"..".show_choice()
+		$"..".picking = false
 	
 	
 func _on_attack_hit():

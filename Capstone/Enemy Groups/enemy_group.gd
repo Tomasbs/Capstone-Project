@@ -9,6 +9,8 @@ var enemies_attacking = 0
 var overall_hp = 7
 var seed_movement = false
 
+var picking = false
+
 var attack_percentage = 0
 
 signal next_player
@@ -60,7 +62,9 @@ func _process(delta):
 			$Pumpkin/Seed.position.x = position.x
 			$Pumpkin/Seed.position.y = 10000
 			seed_movement = false
-			show_choice()
+			if picking == true:
+				show_choice()
+				picking = false
 	
 		
 		
@@ -75,6 +79,7 @@ func switch_focus(x, y):
 	enemies[y].unfocus()
 		
 func show_choice():
+	print("G")
 	choice.show()
 	choice.find_child("Attack").grab_focus()
 	
@@ -106,12 +111,14 @@ func _on_pumpkin_seed_moving():
 
 
 func _on_light_attack_pressed():
+	print("GH")
 	$"../CanvasLayer/Choice2".visible = false
 	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 0
 	_start_choosing()
 
 func _on_magic_attack_pressed():
+	print("GH")
 	$"../CanvasLayer/Choice2".visible = false
 	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 3
@@ -119,6 +126,7 @@ func _on_magic_attack_pressed():
 
 
 func _on_bow_attack_pressed():
+	print("GH")
 	$"../CanvasLayer/Choice2".visible = false
 	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 2
@@ -126,6 +134,7 @@ func _on_bow_attack_pressed():
 
 
 func _on_heavy_attack_pressed():
+	print("HH")
 	$"../CanvasLayer/Choice2".visible = false
 	attack_percentage = randi() % 9
 	$".."/Party.attack_type = 1
