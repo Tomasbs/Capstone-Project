@@ -672,6 +672,20 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Death"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death_screen"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_df6dk"]
 length = 1.42857
@@ -1240,7 +1254,7 @@ script = ExtResource("1_l3e6m")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_p6416")
 animation = &"Idle"
-frame = 3
+frame = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5.25)

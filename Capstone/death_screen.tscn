@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnff8cx88l71o"]
+
+[ext_resource type="Texture2D" uid="uid://djprv4e5pl2kc" path="res://Sprites/intro.png" id="1_dgjjh"]
+[ext_resource type="Script" path="res://death_screen.gd" id="1_t6pfm"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tbcia"]
+
+[node name="Death_Screen" type="Node2D"]
+script = ExtResource("1_t6pfm")
+
+[node name="Intro" type="Sprite2D" parent="."]
+position = Vector2(575, 326.5)
+scale = Vector2(1.19792, 1.02656)
+texture = ExtResource("1_dgjjh")
+metadata/_edit_lock_ = true
+
+[node name="Box" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(550, 273.252)
+scale = Vector2(648, 332.504)
+texture = SubResource("CanvasTexture_tbcia")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 239.0
+offset_top = 115.0
+offset_right = 853.0
+offset_bottom = 422.0
+theme_override_font_sizes/font_size = 27
+text = "You Died... How disapointing
+
+
+
+
+
+Press Enter to Restart"

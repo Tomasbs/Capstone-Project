@@ -142,7 +142,7 @@ func _on_party_enemy_arrow_attacking():
 	$".".enemies[enemies_attacking].randomizer = true
 	
 func choice2_hide():
-	choice_2.visible = false
-	#$"../CanvasLayer/Choice2".visible = false
+	#choice_2.visible = false
+	$"../CanvasLayer/Choice2".visible = false
 	
 

@@ -202,3 +202,6 @@ func miss():
 	anim_state.travel("Miss")
 	await get_tree().create_timer(1).timeout
 	emit_signal("enemy_attacking")
+
+func death_screen():
+	pass
