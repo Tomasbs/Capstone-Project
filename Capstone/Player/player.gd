@@ -204,4 +204,4 @@ func miss():
 	emit_signal("enemy_attacking")
 
 func death_screen_go():
-	get_tree().change_scene_to_file("res://death_screen.tscn")
+	get_tree().quit()
