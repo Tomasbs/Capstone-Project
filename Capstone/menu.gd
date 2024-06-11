@@ -6,6 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AudioStreamPlayer.play()
 	choice.find_child("Play").grab_focus()
 	
 func _process(delta):
@@ -16,7 +17,7 @@ func _process(delta):
 			choice.find_child("Play").grab_focus()
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Level/level.tscn")
+	get_tree().change_scene_to_file("res://cutscene.tscn")
 	
 func _on_credits_pressed():
 	choice.visible = false

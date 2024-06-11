@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c244a28q3m7uu"]
+[gd_scene load_steps=7 format=3 uid="uid://c244a28q3m7uu"]
 
+[ext_resource type="Script" path="res://Level/level.gd" id="1_7jpt5"]
 [ext_resource type="Texture2D" uid="uid://cfsfpyuwluk3a" path="res://Sprites/map.png" id="1_7x1qx"]
 [ext_resource type="PackedScene" uid="uid://d2knmnv0vrvu0" path="res://party.tscn" id="1_aty5w"]
 [ext_resource type="PackedScene" uid="uid://ojvvsbbtykb4" path="res://Enemy Groups/enemy_group.tscn" id="2_dnynw"]
+[ext_resource type="AudioStream" uid="uid://bsbt1onbfpmws" path="res://Music/Botanic Panic.mp3" id="5_ebhum"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2idbn"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_7jpt5")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(582, 324)
@@ -58,19 +63,46 @@ size_flags_horizontal = 3
 text = "Magic Attack
 (50% Accuracy)"
 
+[node name="Death_Screen" type="Node2D" parent="."]
+visible = false
+
+[node name="Box" type="Sprite2D" parent="Death_Screen"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(550, 273.252)
+scale = Vector2(648, 332.504)
+texture = SubResource("CanvasTexture_2idbn")
+
+[node name="TextEdit" type="TextEdit" parent="Death_Screen"]
+offset_left = 239.0
+offset_top = 115.0
+offset_right = 853.0
+offset_bottom = 422.0
+theme_override_font_sizes/font_size = 27
+text = "You Died... How disappointing
+
+
+
+
+
+Press Enter to Restart"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ebhum")
+volume_db = -22.0
+
 [connection signal="enemy_attacking2" from="Party" to="Enemy_Group" method="_on_party_enemy_attacking_2"]
 [connection signal="attacking" from="Enemy_Group" to="Party" method="_on_enemy_group_attacking"]
 [connection signal="enemies_defeated" from="Enemy_Group" to="Party" method="_on_enemy_group_enemies_defeated"]
 [connection signal="next_player" from="Enemy_Group" to="Party" method="_on_enemy_group_next_player"]
 [connection signal="pressed" from="CanvasLayer/Choice/Attack" to="Enemy_Group" method="_on_attack_pressed"]
-[connection signal="pressed" from="CanvasLayer/Choice2/Light_Attack" to="Enemy_Group" method="_on_light_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Choice2/Light_Attack" to="Enemy_Group" method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/Choice2/Light_Attack" to="Enemy_Group" method="_on_light_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Choice2/Heavy_Attack" to="Party" method="_on_heavy_attack_pressed"]
-[connection signal="pressed" from="CanvasLayer/Choice2/Heavy_Attack" to="Enemy_Group" method="_on_heavy_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Choice2/Heavy_Attack" to="Enemy_Group" method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/Choice2/Heavy_Attack" to="Enemy_Group" method="_on_heavy_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Choice2/Bow_Attack" to="Party" method="_on_bow_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Choice2/Bow_Attack" to="Enemy_Group" method="_on_bow_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Choice2/Bow_Attack" to="Enemy_Group" method="_on_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Choice2/Magic_Attack" to="Party" method="_on_magic_attack_pressed"]
-[connection signal="pressed" from="CanvasLayer/Choice2/Magic_Attack" to="Enemy_Group" method="_on_magic_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/Choice2/Magic_Attack" to="Enemy_Group" method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/Choice2/Magic_Attack" to="Enemy_Group" method="_on_magic_attack_pressed"]

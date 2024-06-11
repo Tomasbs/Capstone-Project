@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ghgqa4w6s83e"]
+[gd_scene load_steps=5 format=3 uid="uid://ghgqa4w6s83e"]
 
 [ext_resource type="Script" path="res://victory_screen.gd" id="1_6r5cf"]
 [ext_resource type="Texture2D" uid="uid://djprv4e5pl2kc" path="res://Sprites/intro.png" id="1_aow41"]
+[ext_resource type="AudioStream" uid="uid://b4umtedwhoibv" path="res://Music/Victory Tune.mp3" id="3_xic32"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vgk06"]
 
@@ -31,3 +32,7 @@ hopefully one day this will be a normal
 boss in a much bigger game
 
 Thank you for playing!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xic32")
+volume_db = -15.0

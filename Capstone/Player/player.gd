@@ -203,5 +203,5 @@ func miss():
 	await get_tree().create_timer(1).timeout
 	emit_signal("enemy_attacking")
 
-func death_screen():
-	pass
+func death_screen_go():
+	get_tree().change_scene_to_file("res://death_screen.tscn")

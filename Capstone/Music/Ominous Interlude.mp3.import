@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://750eabrp4v2e"
+path="res://.godot/imported/Ominous Interlude.mp3-d49269383c86603f725cc60c279032d3.mp3str"
+
+[deps]
+
+source_file="res://Music/Ominous Interlude.mp3"
+dest_files=["res://.godot/imported/Ominous Interlude.mp3-d49269383c86603f725cc60c279032d3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

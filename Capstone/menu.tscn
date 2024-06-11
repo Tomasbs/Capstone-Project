@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4mnixvm2jkqi"]
+[gd_scene load_steps=7 format=3 uid="uid://d4mnixvm2jkqi"]
 
 [ext_resource type="Texture2D" uid="uid://djprv4e5pl2kc" path="res://Sprites/intro.png" id="1_ey1ll"]
 [ext_resource type="Script" path="res://menu.gd" id="1_o7b64"]
 [ext_resource type="Texture2D" uid="uid://don7qxqdypl5r" path="res://Sprites/text-1718060006878.png" id="2_430kk"]
+[ext_resource type="AudioStream" uid="uid://dhb1fqir27f43" path="res://Music/Don't Deal with the Devil (Instrumental).mp3" id="4_sebwf"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_cxuoe"]
 
@@ -75,6 +76,10 @@ Art created by Elthen on Patreon
 
 
 Press Enter to return to the Menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sebwf")
+volume_db = -15.0
 
 [connection signal="pressed" from="CanvasLayer/Choice/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Choice/Credits" to="." method="_on_credits_pressed"]

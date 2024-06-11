@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://dafc3k20s6p0s"]
+
+[ext_resource type="Texture2D" uid="uid://cfsfpyuwluk3a" path="res://Sprites/map.png" id="1_iendc"]
+[ext_resource type="Script" path="res://cutscene.gd" id="1_xswue"]
+[ext_resource type="Texture2D" uid="uid://qynf8jurelxu" path="res://Sprites/Giant Pumpkin Sprite Sheet.png" id="2_0efny"]
+[ext_resource type="Texture2D" uid="uid://d7a3kxa4rj05" path="res://Sprites/Peasants Sprite Sheet.png" id="3_6y8pj"]
+[ext_resource type="AudioStream" uid="uid://8m5s3y6tp6me" path="res://Music/Threatenin' Zeppelin.mp3" id="5_mn85k"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tkks3"]
+
+[node name="Cutscene" type="Node2D"]
+script = ExtResource("1_xswue")
+
+[node name="Map" type="Sprite2D" parent="."]
+position = Vector2(577, 323.5)
+scale = Vector2(1.8, 2.03437)
+texture = ExtResource("1_iendc")
+metadata/_edit_lock_ = true
+
+[node name="GiantPumpkinSpriteSheet" type="Sprite2D" parent="."]
+position = Vector2(930, 324)
+scale = Vector2(4.4, 4.4)
+texture = ExtResource("2_0efny")
+region_enabled = true
+region_rect = Rect2(1060.86, 138.967, 79.9126, 60.7882)
+
+[node name="PeasantsSpriteSheet" type="Sprite2D" parent="."]
+position = Vector2(644, 271)
+scale = Vector2(2.54762, 2.54762)
+texture = ExtResource("3_6y8pj")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(97.6394, 108.452, 29.993, 21.8178)
+
+[node name="PeasantsSpriteSheet2" type="Sprite2D" parent="."]
+position = Vector2(463, 345)
+scale = Vector2(2.21429, 2.21429)
+texture = ExtResource("3_6y8pj")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(97.5536, 195.931, 28.6792, 30.5788)
+
+[node name="PeasantsSpriteSheet3" type="Sprite2D" parent="."]
+position = Vector2(339, 272)
+scale = Vector2(2.44445, 2.44445)
+texture = ExtResource("3_6y8pj")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(133.46, 327.297, 18.8092, 27.1949)
+
+[node name="PeasantsSpriteSheet4" type="Sprite2D" parent="."]
+position = Vector2(239, 399)
+scale = Vector2(2.59524, 2.59524)
+texture = ExtResource("3_6y8pj")
+region_enabled = true
+region_rect = Rect2(68.6723, 232.911, 21.0014, 27.428)
+
+[node name="PeasantsSpriteSheet5" type="Sprite2D" parent="."]
+position = Vector2(99, 304)
+scale = Vector2(2.15217, 2.15217)
+texture = ExtResource("3_6y8pj")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(196.401, 62.6702, 23.6665, 34.9295)
+
+[node name="Box" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(587, 553)
+scale = Vector2(792, -98)
+texture = SubResource("CanvasTexture_tkks3")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 197.0
+offset_top = 511.0
+offset_right = 970.0
+offset_bottom = 590.0
+theme_override_font_sizes/font_size = 27
+text = "Oh No! A Pumkin Monster is attacking the villagers, we 
+need a hero to save the village (Press Enter to Continue)
+
+
+
+
+
+Press Enter to Restart"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mn85k")
+volume_db = -15.0
